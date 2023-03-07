@@ -1,0 +1,47 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build release test-aarch64-apple-darwin",
+      "type": "shell",
+      "command": "smake",
+      "args": [
+        "build",
+        "test-aarch64-apple-darwin"
+      ],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceRoot}"
+      },
+      "dependsOn": []
+    },
+    {
+      "label": "Build debug test-aarch64-apple-darwin",
+      "type": "shell",
+      "command": "smake",
+      "args": [
+        "build",
+        "-d",
+        "test-aarch64-apple-darwin"
+      ],
+      "group": "test",
+      "options": {
+        "cwd": "${workspaceRoot}"
+      },
+      "dependsOn": []
+    },
+    {
+      "label": "Clean test-aarch64-apple-darwin",
+      "type": "shell",
+      "command": "smake",
+      "args": [
+        "clean",
+        "test-aarch64-apple-darwin"
+      ],
+      "options": {
+        "cwd": "${workspaceRoot}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

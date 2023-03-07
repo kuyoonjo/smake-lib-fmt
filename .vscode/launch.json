@@ -21,6 +21,16 @@
       "cwd": "${workspaceRoot}",
       "sourceMaps": true,
       "console": "integratedTerminal"
+    },
+    {
+      "name": "(lldb) test-aarch64-apple-darwin",
+      "type": "lldb",
+      "request": "launch",
+      "program": ".smake/test/debug/aarch64-apple-darwin/test",
+      "args": [],
+      "cwd": "${workspaceRoot}",
+      "console": "integratedTerminal",
+      "preLaunchTask": "Build debug test-aarch64-apple-darwin"
     }
   ]
 }

@@ -6,3 +6,9 @@ yarn-error.log*
 .nyc_output
 lib
 lib_test
+/.cache
+/.smake
+/.ninja_log
+/.ninja_deps
+/compile_commands.json
+/pnpm-lock.yaml
