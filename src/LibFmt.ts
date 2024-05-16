@@ -25,6 +25,8 @@ export class LibFmt extends LLVM {
     this.files = files;
     if (target.includes('msvc')) {
       this.cxflags.push('/EHsc');
+    } else if (target.includes('linux')) {
+      this.cxflags.push('-fPIC');
     }
   }
 

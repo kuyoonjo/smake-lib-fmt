@@ -1,6 +1,6 @@
-#include <fmt/core.h>
+#include <fmt/format.h>
 
 int main() {
-  fmt::print("OK\n");
+  fmt::print(fmt::format("{}\n", "OK"));
   return 0;
 }
