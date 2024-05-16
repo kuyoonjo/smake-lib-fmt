@@ -23,6 +23,9 @@ export class LibFmt extends LLVM {
     this.type = 'static';
     this.includedirs = [...this.includedirs, includeDir];
     this.files = files;
+    if (target.includes('msvc')) {
+      this.cxflags.push('/EHsc');
+    }
   }
 
   static config(llvm: LLVM) {
