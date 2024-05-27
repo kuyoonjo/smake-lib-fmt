@@ -1,6 +1,6 @@
 {
   "name": "@smake/fmt",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Typescript Module Template",
   "license": "MIT",
   "repository": "https://github.com/kuyoonjo/smake-lib-fmt.git",
@@ -33,7 +33,8 @@
     "build": "tsc --pretty"
   },
   "dependencies": {
-    "@smake/llvm": "^1.1.2"
+    "@smake/llvm": "^1.1.2",
+    "@smake/fmt": "link:."
   },
   "devDependencies": {
     "@smake/llvm-vscode": "^1.0.0",

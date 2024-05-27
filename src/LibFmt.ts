@@ -1,11 +1,17 @@
 import { LLVM } from '@smake/llvm';
-import { resolve, relative } from 'path/posix';
+import { resolve } from 'path/posix';
 
-const includeDir = resolve(__dirname, '..', 'fmt', 'include').replace(
+const includeDir = resolve(
+  'node_modules',
+  '@smake',
+  'fmt',
+  'fmt',
+  'include'
+).replace(/\\/g, '/');
+const filesDir = resolve('node_modules', '@smake', 'fmt', 'fmt', 'src').replace(
   /\\/g,
   '/'
 );
-const filesDir = resolve(__dirname, '..', 'fmt', 'src').replace(/\\/g, '/');
 const files = [filesDir + '/format.cc', filesDir + '/os.cc'];
 
 type TargetType =
@@ -18,11 +24,11 @@ type TargetType =
   | 'i386-pc-windows-msvc'
   | string;
 export class LibFmt extends LLVM {
-  constructor(target: TargetType, smakeDir: string) {
+  constructor(target: TargetType) {
     super('fmt', target);
     this.type = 'static';
-    this.includedirs = [...this.includedirs, relative(smakeDir, includeDir)];
-    this.files = files.map((x) => relative(smakeDir, x));
+    this.includedirs = [...this.includedirs, includeDir];
+    this.files = files;
     if (target.includes('msvc')) {
       this.cxflags.push('/EHsc');
     } else if (target.includes('linux')) {
@@ -30,9 +36,9 @@ export class LibFmt extends LLVM {
     }
   }
 
-  static config(llvm: LLVM, smakeDir: string) {
-    const t = new LibFmt(llvm.target, smakeDir);
-    llvm.includedirs = [...llvm.includedirs, relative(smakeDir, includeDir)];
+  static config(llvm: LLVM) {
+    const t = new LibFmt(llvm.target);
+    llvm.includedirs = [...llvm.includedirs, includeDir];
     llvm.linkdirs = [...llvm.linkdirs, t.outputDir];
     llvm.libs = [...llvm.libs, t.name];
   }
