@@ -10,7 +10,7 @@ test.cxflags = [
   ...test.cxflags,
   '/EHsc',
 ];
-fmt.config(test);
+LibFmt.config(test, __dirname);
 vscode(test);
 
 module.exports = [fmt, test];

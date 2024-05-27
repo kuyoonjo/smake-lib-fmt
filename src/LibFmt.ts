@@ -30,9 +30,10 @@ export class LibFmt extends LLVM {
     }
   }
 
-  config(llvm: LLVM) {
-    llvm.includedirs = [...llvm.includedirs, ...this.includedirs];
-    llvm.linkdirs = [...llvm.linkdirs, this.outputDir];
-    llvm.libs = [...llvm.libs, this.name];
+  static config(llvm: LLVM, smakeDir: string) {
+    const t = new LibFmt(llvm.target, smakeDir);
+    llvm.includedirs = [...llvm.includedirs, relative(smakeDir, includeDir)];
+    llvm.linkdirs = [...llvm.linkdirs, t.outputDir];
+    llvm.libs = [...llvm.libs, t.name];
   }
 }
